@@ -1,12 +1,16 @@
 import React from 'react'
 import {Container, Nav, Navbar, Form, Button } from 'react-bootstrap';
+import styles from '../styles/NavBar.module.css';
+import {NavLink} from 'react-router-dom';
 
 
 const NavBar = () => {
   return (
-    <Navbar bg="light" expand="sm" fixed="top">
+    <Navbar className={styles.NavBar} expand="sm" fixed="top">
       <Container>
-        <Navbar.Brand>Whatodogotodo</Navbar.Brand>
+        <NavLink to='/'>
+          <Navbar.Brand className={styles.Logo}>Whatodogotodo</Navbar.Brand>
+        </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto text-start">
@@ -19,8 +23,8 @@ const NavBar = () => {
                 />
                 <Button variant="light"><i class="fa-solid fa-magnifying-glass"></i></Button>
             </Form>
-            <Nav.Link>Sign In</Nav.Link>
-            <Nav.Link>Sign Up</Nav.Link>
+            <NavLink to='/signin' className={styles.NavLink} activeClassName={styles.Active}>Sign In</NavLink>
+            <NavLink to='/register' className={styles.NavLink} activeClassName={styles.Active}>Register</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>

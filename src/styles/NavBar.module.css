@@ -1,0 +1,18 @@
+.NavBar{
+    background-color: #ffffff;
+}
+
+.Logo{
+    color: #EFB0B7;
+    font-family: 'Prompt', sans-serif;
+}
+
+.NavLink{
+    font-family: 'Expletus Sans', cursive;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.Active {
+    color: #EFB0B7;
+}
