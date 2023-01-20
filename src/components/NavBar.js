@@ -3,8 +3,24 @@ import {Container, Nav, Navbar, Form, Button } from 'react-bootstrap';
 import styles from '../styles/NavBar.module.css';
 import {NavLink} from 'react-router-dom';
 
+import { useCurrentUser} from '../contexts/CurrentUserContext';
+
 
 const NavBar = () => {
+  const currentUser = useCurrentUser()
+  const loggedInNavLinks = (
+    <>
+      {currentUser?.username}
+    </>
+  )
+  const loggedOutNavLinks = (
+  <>
+    <NavLink to='/signin' className={styles.NavLink} activeclassname={styles.Active}>Sign In</NavLink>
+    <NavLink to='/register' className={styles.NavLink} activeclassname={styles.Active}>Register</NavLink>
+  </>
+  );
+  
+
   return (
     <Navbar className={styles.NavBar} expand="sm" fixed="top">
       <Container>
@@ -23,8 +39,7 @@ const NavBar = () => {
                 />
                 <Button variant="light"><i className="fa-solid fa-magnifying-glass"></i></Button>
             </Form>
-            <NavLink to='/signin' className={styles.NavLink} activeclassname={styles.Active}>Sign In</NavLink>
-            <NavLink to='/register' className={styles.NavLink} activeclassname={styles.Active}>Register</NavLink>
+            {currentUser?loggedInNavLinks : loggedOutNavLinks}
           </Nav>
         </Navbar.Collapse>
       </Container>

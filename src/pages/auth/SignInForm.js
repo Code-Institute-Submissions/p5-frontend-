@@ -3,9 +3,12 @@ import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../../App.module.css';
 import axios from 'axios';
+import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 
 
 function SignInForm() {
+    const setCurrentUser = useSetCurrentUser();
+
     const [signInData, setSignInData] = useState({
         username: '',
         password: '',
@@ -16,7 +19,8 @@ function SignInForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-        await axios.post('/dj-rest-auth/login/', signInData);
+        const {data} = await axios.post('/dj-rest-auth/login/', signInData);
+        setCurrentUser(data.user)
         navigate('/');
         } catch (error) {
             setErrors(error.response?.data);
@@ -45,7 +49,7 @@ function SignInForm() {
                         </Form.Group>
                         {errors.username?.map((message, idx)=>(
                         <Alert variant='light' key={idx}>
-                        {   message}
+                        {message}
                         </Alert>
                         ))}
                         <Form.Group className="mb-3" controlId="password">
