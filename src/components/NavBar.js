@@ -21,10 +21,10 @@ const NavBar = () => {
                   className="me-2"
                   aria-label="Search"
                 />
-                <Button variant="light"><i class="fa-solid fa-magnifying-glass"></i></Button>
+                <Button variant="light"><i className="fa-solid fa-magnifying-glass"></i></Button>
             </Form>
-            <NavLink to='/signin' className={styles.NavLink} activeClassName={styles.Active}>Sign In</NavLink>
-            <NavLink to='/register' className={styles.NavLink} activeClassName={styles.Active}>Register</NavLink>
+            <NavLink to='/signin' className={styles.NavLink} activeclassname={styles.Active}>Sign In</NavLink>
+            <NavLink to='/register' className={styles.NavLink} activeclassname={styles.Active}>Register</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
