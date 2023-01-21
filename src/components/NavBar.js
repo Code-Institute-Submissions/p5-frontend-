@@ -5,11 +5,14 @@ import styles from '../styles/NavBar.module.css';
 import {NavLink} from 'react-router-dom';
 import axios from 'axios';
 import { useCurrentUser, useSetCurrentUser} from '../contexts/CurrentUserContext';
+import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+
+  const {expanded, setExpanded, ref} = useClickOutsideToggle();
 
   const handleSignOut = async () =>{
     try{
@@ -58,7 +61,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div>
-          <NavLink className={styles.NavLink} to='/' onClick={()=>{}}>
+          <NavLink className={styles.NavLink} to='/' onClick={handleSignOut}>
           Sign out
           </NavLink>
         </div>
@@ -74,12 +77,16 @@ const NavBar = () => {
   
 
   return (
-    <Navbar className={styles.NavBar} expand="sm" fixed="top">
+    <Navbar expanded={expanded} className={styles.NavBar} expand="sm" fixed="top">
       <Container>
         <NavLink to='/'>
           <Navbar.Brand className={styles.Logo}>Whatodogotodo</Navbar.Brand>
         </NavLink>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle 
+          aria-controls="basic-navbar-nav"
+          onClick={() => setExpanded(!expanded)}
+          ref={ref}
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto text-start">
             <Form className="d-flex">
