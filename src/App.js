@@ -12,9 +12,10 @@ function App() {
           <NavBar/>
           <Container className={styles.Main}>
             <Routes>
-              <Route  path='/' element={<h1>Home page</h1>}/>
-              <Route  path='/signin' element={<SignInForm/>}/>
-              <Route  path='/register' element={<RegisterForm/>}/>
+              <Route path='/' element={<h1>Home page</h1>}/>
+              <Route path='/signin' element={<SignInForm/>}/>
+              <Route path='/register' element={<RegisterForm/>}/>
+              <Route path='*' element={<h1>Page not found :(</h1>}/>
             </Routes>
           </Container>
         </div>
