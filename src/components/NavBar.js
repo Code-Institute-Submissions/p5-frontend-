@@ -1,16 +1,68 @@
 import React from 'react'
-import {Container, Nav, Navbar, Form, Button } from 'react-bootstrap';
+import {Container, Nav, Navbar, Dropdown , Form, Button } from 'react-bootstrap';
+import Avatar from './Avatar';
 import styles from '../styles/NavBar.module.css';
 import {NavLink} from 'react-router-dom';
-
-import { useCurrentUser} from '../contexts/CurrentUserContext';
+import axios from 'axios';
+import { useCurrentUser, useSetCurrentUser} from '../contexts/CurrentUserContext';
 
 
 const NavBar = () => {
-  const currentUser = useCurrentUser()
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () =>{
+    try{
+      await axios.post('dj-rest-auth/logout/');
+      setCurrentUser(null);
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   const loggedInNavLinks = (
     <>
-      {currentUser?.username}
+      <Dropdown className="mx-2 d-none d-sm-inline">
+        <Dropdown.Toggle variant='light' id="dropdown-autoclose-true">
+        {currentUser?.username}
+        <Avatar src={currentUser?.profile_image} height={30}/>
+        </Dropdown.Toggle>
+        
+        <Dropdown.Menu>
+        <div>
+          <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.profile_id}`}>
+          Profile
+          </NavLink>
+        </div>
+        <div>
+          <NavLink>
+          Account
+          </NavLink>
+        </div>
+        <div>
+          <NavLink className={styles.NavLink} to='/' onClick={handleSignOut}>
+          Sign out
+          </NavLink>
+        </div>
+        </Dropdown.Menu>
+      </Dropdown>
+      <div className='d-sm-none'>
+        <div>
+          <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.profile_id}`}>
+          Profile
+          </NavLink>
+        </div>
+        <div>
+          <NavLink>
+          Account
+          </NavLink>
+        </div>
+        <div>
+          <NavLink className={styles.NavLink} to='/' onClick={()=>{}}>
+          Sign out
+          </NavLink>
+        </div>
+      </div>
     </>
   )
   const loggedOutNavLinks = (
@@ -39,7 +91,7 @@ const NavBar = () => {
                 />
                 <Button variant="light"><i className="fa-solid fa-magnifying-glass"></i></Button>
             </Form>
-            {currentUser?loggedInNavLinks : loggedOutNavLinks}
+            {currentUser? loggedInNavLinks : loggedOutNavLinks}
           </Nav>
         </Navbar.Collapse>
       </Container>
