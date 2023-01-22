@@ -5,6 +5,8 @@ import {Route,Routes} from 'react-router-dom';
 import './api/axiosDefaults';
 import RegisterForm from './pages/auth/RegisterForm';
 import SignInForm from './pages/auth/SignInForm';
+import CreateListForm from './pages/todolist/CreateListForm';
+import CreateItemForm from './pages/todoitem/CreateItemForm';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
               <Route path='/' element={<h1>Home page</h1>}/>
               <Route path='/signin' element={<SignInForm/>}/>
               <Route path='/register' element={<RegisterForm/>}/>
+              <Route path='/createlist' element={<CreateListForm/>}/>
+              {/* <Route path='/createitem' element={<CreateItemForm/>}/> */}
               <Route path='*' element={<h1>Page not found :(</h1>}/>
             </Routes>
           </Container>
