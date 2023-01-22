@@ -7,6 +7,7 @@ import RegisterForm from './pages/auth/RegisterForm';
 import SignInForm from './pages/auth/SignInForm';
 import CreateListForm from './pages/todolist/CreateListForm';
 import CreateItemForm from './pages/todoitem/CreateItemForm';
+import ListDetailPage from './pages/todolist/ListDetailPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path='/register' element={<RegisterForm/>}/>
               <Route path='/createlist' element={<CreateListForm/>}/>
               {/* <Route path='/createitem' element={<CreateItemForm/>}/> */}
+              <Route path='/lists/:id' element={<ListDetailPage/>}/>
               <Route path='*' element={<h1>Page not found :(</h1>}/>
             </Routes>
           </Container>
