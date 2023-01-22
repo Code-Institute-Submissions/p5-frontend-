@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, ToggleButton, Row} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import { axiosRes } from '../../api/axiosDefaults';
 import Avatar from '../../components/Avatar';
 
 const List = (props) => {
@@ -16,6 +17,15 @@ const List = (props) => {
         profile_image
 
     } = props
+
+    // const handleComplete = async () => {
+    //     try {
+    //         const {data} = await axiosRes.post('/')
+    //     } catch (error) {
+            
+    //     }
+    // }
+
   return (
     <Card>
         <Card.Header><span className=''>{title}</span><span className="text-muted">, created by: {owner}<Avatar src={profile_image}/></span></Card.Header>
