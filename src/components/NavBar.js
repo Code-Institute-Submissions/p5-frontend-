@@ -28,7 +28,7 @@ const NavBar = () => {
       <Dropdown className="mx-2 d-none d-sm-inline">
         <Dropdown.Toggle variant='light' id="dropdown-autoclose-true">
         {currentUser?.username}
-        <Avatar src={currentUser?.profile_image} height={30}/>
+        <Avatar src={currentUser?.profile_image}/>
         </Dropdown.Toggle>
         
         <Dropdown.Menu>
