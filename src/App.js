@@ -8,14 +8,22 @@ import SignInForm from './pages/auth/SignInForm';
 import CreateListForm from './pages/todolist/CreateListForm';
 import CreateItemForm from './pages/todoitem/CreateItemForm';
 import ListDetailPage from './pages/todolist/ListDetailPage';
+import ListsPage from './pages/todolist/ListsPage';
+import { useCurrentUser } from './contexts/CurrentUserContext';
 
 function App() {
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || '';
+
   return (
         <div className={styles.App}>
           <NavBar/>
           <Container className={styles.Main}>
             <Routes>
-              <Route path='/' element={<h1>Home page</h1>}/>
+              <Route path='/' element={<ListsPage message='No results found, adjust the keyword'/> }/>
+              <Route path='/feed' element={<ListsPage 
+                message='No results found, Create a new list'
+                filter={`owner__profile=${profile_id}&`}/> }/>
               <Route path='/signin' element={<SignInForm/>}/>
               <Route path='/register' element={<RegisterForm/>}/>
               <Route path='/createlist' element={<CreateListForm/>}/>

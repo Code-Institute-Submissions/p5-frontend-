@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, NavLink } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { axiosReq } from '../../api/axiosDefaults';
 import List from './List';
@@ -26,12 +26,18 @@ export default function ListDetailPage() {
   return (
     <Row>
         <Col>
-         <p>My Other Lists</p>
+            <Row>
+                <NavLink>View All Lists</NavLink>
+                <NavLink>Create Item</NavLink>
+            </Row>
          <List {...list.results[0]} setLists={setList}/>
          <Container>Comments</Container> 
         </Col>
         <Col>
-         <p>My Other Lists</p>  
+            <Row>
+                <NavLink>View All Lists</NavLink>
+                <NavLink>Create Item</NavLink>
+            </Row>
         </Col>
     </Row>
   )
