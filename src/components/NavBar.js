@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Nav, Navbar, Dropdown , Form, Button } from 'react-bootstrap';
+import {Container, Nav, Navbar, Dropdown} from 'react-bootstrap';
 import Avatar from './Avatar';
 import styles from '../styles/NavBar.module.css';
 import {NavLink} from 'react-router-dom';
@@ -89,15 +89,6 @@ const NavBar = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto text-start">
-            <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button variant="light"><i className="fa-solid fa-magnifying-glass"></i></Button>
-            </Form>
             {currentUser? loggedInNavLinks : loggedOutNavLinks}
           </Nav>
         </Navbar.Collapse>
