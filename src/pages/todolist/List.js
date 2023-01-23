@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, ToggleButton, Row} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
 import { axiosRes } from '../../api/axiosDefaults';
 import Avatar from '../../components/Avatar';
 
@@ -18,13 +19,20 @@ const List = (props) => {
 
     } = props
 
-    // const handleComplete = async () => {
-    //     try {
-    //         const {data} = await axiosRes.post('/')
-    //     } catch (error) {
-            
-    //     }
-    // }
+    const navigate = useNavigate();
+
+    const handleEdit = () => {
+        navigate(`/lists/${id}/edit`);
+      };
+    
+      const handleDelete = async () => {
+        try {
+          await axiosRes.delete(`/lists/${id}/`);
+          navigate('/');
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
   return (
     <Card>
@@ -71,6 +79,8 @@ const List = (props) => {
                         >
                         Completed
                       </ToggleButton>
+                      <a onClick={handleEdit}>Edit</a>
+                      <a onClick={handleDelete}>Delete</a>
                 </Card.Footer>
 
             ):(
