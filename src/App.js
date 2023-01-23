@@ -10,6 +10,7 @@ import CreateItemForm from './pages/todoitem/CreateItemForm';
 import ListDetailPage from './pages/todolist/ListDetailPage';
 import ListsPage from './pages/todolist/ListsPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
+import EditListForm from './pages/todolist/EditListForm';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -26,9 +27,10 @@ function App() {
                 filter={`owner__profile=${profile_id}&`}/> }/>
               <Route path='/signin' element={<SignInForm/>}/>
               <Route path='/register' element={<RegisterForm/>}/>
-              <Route path='/createlist' element={<CreateListForm/>}/>
+              <Route path='/lists/create' element={<CreateListForm/>}/>
               {/* <Route path='/createitem' element={<CreateItemForm/>}/> */}
               <Route path='/lists/:id' element={<ListDetailPage/>}/>
+              <Route path='/lists/:id/edit' element={<EditListForm/>}/>
               <Route path='*' element={<h1>Page not found :(</h1>}/>
             </Routes>
           </Container>
