@@ -28,7 +28,7 @@ function App() {
               <Route path='/signin' element={<SignInForm/>}/>
               <Route path='/register' element={<RegisterForm/>}/>
               <Route path='/lists/create' element={<CreateListForm/>}/>
-              {/* <Route path='/createitem' element={<CreateItemForm/>}/> */}
+              <Route path='/create/item' element={<CreateItemForm/>}/>
               <Route path='/lists/:id' element={<ListDetailPage/>}/>
               <Route path='/lists/:id/edit' element={<EditListForm/>}/>
               <Route path='*' element={<h1>Page not found :(</h1>}/>
