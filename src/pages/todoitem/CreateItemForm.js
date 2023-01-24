@@ -72,18 +72,47 @@ function ItemCreateForm(props) {
   return (
     <Form className="mt-2" onSubmit={handleSubmit}>
       <Form.Group>
-        <InputGroup>
-          <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profileImage} />
-          </Link>
+        <Form.Label>Title</Form.Label>
+        <Form.Control
+            type="text"
+            name="title"
+            value={title}
+            onChange={handleChange}
+          />
+      </Form.Group>
+      <Form.Group>
+          <Form.Label>Description</Form.Label>
           <Form.Control
-            placeholder="my comment..."
+            placeholder="item description"
             as="textarea"
             value={description}
             onChange={handleChange}
             rows={2}
           />
-        </InputGroup>
+      </Form.Group>
+      <Form.Group>
+          <Form.Label>Due Date</Form.Label>
+          <Form.Control
+            placeholder="item description"
+            as="textarea"
+            value={due_date}
+            onChange={handleChange}
+            rows={2}
+          />
+      </Form.Group>
+      <Form.Group>
+          <Form.Label>Priority</Form.Label>
+          <Form.Control
+            placeholder="item description"
+            as="textarea"
+            value={priority}
+            onChange={handleChange}
+            rows={2}
+          />
+      </Form.Group>
+      <Form.Group controlId="formFile" className="mb-3">
+        <Form.Label>Default file input example</Form.Label>
+        <Form.Control type="file" />
       </Form.Group>
       <button
         className={`btn d-block ml-auto`}
